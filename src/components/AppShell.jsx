@@ -7,7 +7,7 @@ import Step3Build from './steps/Step3Build.jsx'
 import Step4Package from './steps/Step4Package.jsx'
 import Step5Launch from './steps/Step5Launch.jsx'
 
-export default function AppShell({ user, onLogout }) {
+export default function AppShell() {
   const [currentStep, setCurrentStep] = useState(1)
   const [completedSteps, setCompletedSteps] = useState([])
   const [ideaData, setIdeaData] = useState({})
@@ -33,17 +33,11 @@ export default function AppShell({ user, onLogout }) {
           <span>VEGA</span>
           <small>Digital Product Builder</small>
         </div>
-        <div className={styles.headerRight}>
-          <span className={`${styles.badge} ${user.fastTrack ? styles.fasttrack : styles.standard}`}>
-            {user.fastTrack ? 'Fast Track' : 'Standard'}
-          </span>
-          <button className={styles.logoutBtn} onClick={onLogout}>Sign out</button>
-        </div>
       </header>
 
       <main className={styles.main}>
         <div className={styles.welcome}>
-          <h1>Hey <span>{user.name}</span> — let's build something that sells.</h1>
+          <h1>Let's build something that sells.</h1>
           <p>Work through each step below. Your idea goes in, a validated, packaged, ready-to-sell digital product comes out.</p>
         </div>
 
@@ -53,7 +47,7 @@ export default function AppShell({ user, onLogout }) {
         {currentStep === 2 && <Step2Validate {...stepProps} />}
         {currentStep === 3 && <Step3Build {...stepProps} />}
         {currentStep === 4 && <Step4Package {...stepProps} />}
-        {currentStep === 5 && <Step5Launch {...stepProps} isFastTrack={user.fastTrack} />}
+        {currentStep === 5 && <Step5Launch {...stepProps} isFastTrack={false} />}
       </main>
 
       <footer className={styles.footer}>
